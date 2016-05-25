@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Senior software engineer specialized in big data, distributed systems and systems SW.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[jorge.marsal@gmail.com](mailto:jorge.marsal@gmail.com)
