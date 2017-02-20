@@ -3,7 +3,7 @@ layout: post
 title: "Going faster with Just-In-Time compilation"
 description: ""
 category: 
-tags: []
+tags: [tech]
 ---
 
 This post is about code optimization using [Just-In-Time compilation](https://en.wikipedia.org/wiki/Just-in-time_compilation). The main insight is that there is a tradeoff between generality and performance. In other words if you want to make things generic they will be slower than a specialized solution.
@@ -35,7 +35,7 @@ You can take a look at the full code (adapted from this excellent [example](http
 
 With this optimization the performance improves dramatically. 1 million iterations of the first example run in 0.04 seconds while the second example runs in 0.002 seconds. That’s a 20X speedup!
 
-This is a pretty contrived example but a generalization of this technique is extremely useful to improve performance in real world cases and companies like [Databricks](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html) use it in their products.
+This is a pretty contrived example but a generalization of this technique is extremely useful to improve performance in real world cases and companies like [Databricks](https://databricks.com//2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html) use it in their products.
 
 Pretty cool huh?
 

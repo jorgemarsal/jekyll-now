@@ -3,7 +3,7 @@ layout: post
 title: "Modern c++ tools and techniques"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 ### Intro
@@ -539,7 +539,7 @@ You can generate a profile using:
     $ pprof --gv $BINARY /tmp/$PROFILENAME.prof
 
 This is an example profile:
-![gperftools](/blog/assets/pprof.png)
+![gperftools](/assets/pprof.png)
 
 #### Linting
 `cpplint.py` gives a lot useful warnings about code style and common c++ errors:

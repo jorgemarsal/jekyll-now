@@ -3,7 +3,7 @@ layout: post
 title: "Creating your first service using Kubernetes on AWS"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 
@@ -67,18 +67,18 @@ K8s runs a few services by default including DNS, logging, monitoring and others
 #### Logging
 Kubernetes’ default option for logging is to run a `fluentd` agent on each node. These agents send the logs to `ElasticSearch` where they’re stored and indexed. To explore the logs there’s a GUI named `Kibana`:
 
-![Logging](/blog/assets/k8s-aws/kibana.jpg)
+![Logging](/assets/k8s-aws/kibana.jpg)
 
 
 #### Monitoring
 There’s an analogous solution for monitoring as well. Each node runs a `heapster` agent that collects metrics. The metrics are sent to `influxdb` (a time series database) where they can be queried using a REST API or a GUI named `Grafana`:
 
-![Monitoring](/blog/assets/k8s-aws/grafana.jpg)
+![Monitoring](/assets/k8s-aws/grafana.jpg)
 
 ### Kube-ui
 Kubernetes comes with a graphical dashboard with information of the nodes that form the cluster.
 
-![Kube-UI](/blog/assets/k8s-aws/kube-ui.jpg)
+![Kube-UI](/assets/k8s-aws/kube-ui.jpg)
 
 And of course there's the possibility to SSH to the nodes directly:
 

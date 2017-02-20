@@ -3,13 +3,13 @@ layout: post
 title: "Design of a simple distributed application"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 ### Introduction
 Today I'm going to explain how to design a simple distributed application. The goal is to read a really big file into memory. Since the file doesn't fit in a single machine's memory we need to design a system to split the file across different machines. A possible architecture comprises a `master` that breaks the file into smaller chunks and `N workers` that process those chunks.
 
-![Use case](/blog/assets/usecase.png)
+![Use case](/assets/usecase.png)
 
 The master should implement the following:
 
@@ -35,7 +35,7 @@ This continues until all the splits are complete.
 ### Master architecture
 We divide the master into 2 components: `master` and `transport`.
 
-![Architecture](/blog/assets/arch.png)
+![Architecture](/assets/arch.png)
 
 `master` is in charge of sending `Fetch Split Requests`, sending `heartbeats` and processing `responses` from workers.
 
@@ -58,7 +58,7 @@ Note that the queues are not blocking. This allows us to keep sending requests e
 
 At a certain point in time the queues will look like this:
 
-![Queues](/blog/assets/queues.png)
+![Queues](/assets/queues.png)
 
 
 This is just a very simple design. One possible problem is that the heartbeat requests/responses may be delayed if there are too many Fetch Splits requests/responses in the queue. Another option would be to have a separate queue with higher priority for heartbeats (i.e. `transport` would always empty the heartbeat queue first).

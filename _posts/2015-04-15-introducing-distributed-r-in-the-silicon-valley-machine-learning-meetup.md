@@ -3,7 +3,7 @@ layout: post
 title: "Introducing Distributed R in the Silicon Valley Machine Learning Meetup"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 A few days ago we introduced Distributed R in the Silicon Valley Machine Learning Meetup ([link](http://www.meetup.com/Silicon-Valley-Machine-Learning/events/221425830/)).

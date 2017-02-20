@@ -3,7 +3,7 @@ layout: post
 title: "Tracking memory usage in Linux"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 When working with big data optimizing the memory footprint is important.

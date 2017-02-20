@@ -3,7 +3,7 @@ layout: post
 title: "100000-foot view of a modern web service "
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 In this post we’re going to explore how to deliver a modern web service. To make things clearer we’re going to use a OCR service as an example. All the code is available on [Github](https://github.com/jorgemarsal/webocr/tree/master/webocr).
@@ -14,7 +14,7 @@ In this post we’re going to explore how to deliver a modern web service. To ma
 ### Architecture
 The architecture is shown in this picture below:
 
-![Architecture](/blog/assets/webocr/arch.png)
+![Architecture](/assets/webocr/arch.png)
 
 There are 2 main elements:
 
@@ -86,7 +86,7 @@ The backend is a Tornado app that implements the restful API. There aren’t any
 
 Choosing the right database is probably one of the most important decision in a web project. In this case, since the performance requirements are modest, we don't need a database cluster and we can live with a single node and snapshot backups. In this situation we can pretty much do whatever we want and we’ve chosen MySQL. When the performance requirements are higher then we need to consider other solutions and keep in mind the associated performance and consistency tradeoffs.
 
-As mentioned earlier the backend stores the state in a MySQL database but instead of having a fixed schema we have a `schemaless` design. The original idea comes from [Friendfeed's schemaless design](https://backchannel.org/blog/friendfeed-schemaless-mysql) and the implementation (with minor modifications) comes from [Evan Klitzke](https://github.com/eklitzke/schemaless).
+As mentioned earlier the backend stores the state in a MySQL database but instead of having a fixed schema we have a `schemaless` design. The original idea comes from [Friendfeed's schemaless design](https://backchannel.org//friendfeed-schemaless-mysql) and the implementation (with minor modifications) comes from [Evan Klitzke](https://github.com/eklitzke/schemaless).
 
 In this design we store compressed pickled python dictionaries that can hold arbitrary data, making schema evolution simple. Note that this idea is from 2009 when NoSQL offerings weren’t as mature as today. Probably nowadays we’d be better off using something like Mongo. Storing and querying the database is done like this:
 
@@ -151,7 +151,7 @@ I recommend having testing, linting and other tooling as part of the CI process 
 We’ve created a simple webpage to submit new tasks and to display the status of pending/finished tasks (see pic below). On the left hand side we have a form to submit the image information. In the middle we display the original image and on the right the extracted text. We also have a websocket channel to receive real-time progress updates.
 
 
-![Frontend](/blog/assets/webocr/frontend.png)
+![Frontend](/assets/webocr/frontend.png)
 
 I’m by no means a frontend expert. I just know the minimum HTML, CSS and JS to get by. Having said that, it pays off to organize the code properly. For JS we follow the MVC pattern. The important point to remember is that the model and the view don’t talk directly, they always go through the controller.
 

@@ -3,7 +3,7 @@ layout: post
 title: "Introducing hdfsconnector for R"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 ### Introduction
@@ -16,7 +16,7 @@ To understand how this works let’s walk through an example. Say we have a 4GB 
 
 Once we've split the file into multiple chunks we assign each chunk to the best executor. For files stored in HDFS we try to minimize data movement in the cluster. This means we'll assign the chunk to the executor that has the highest number of HDFS blocks locally. In this case executor 1 has the highest number of blocks corresponding to chunk 1 (red), executor 2 has the highest number of blocks for chunk 2 and so on.
 
-![Scheduling](/blog/assets/hdfsconnector/scheduling.png)
+![Scheduling](/assets/hdfsconnector/scheduling.png)
 
 After creating the scheduling map the master sends a message to the executors indicating which chunks should be loaded on which executor. In this case the master sends 1 message to each executor:
 
@@ -29,7 +29,7 @@ After creating the scheduling map the master sends a message to the executors in
 
 Each executor implements a loading stack made of 4 layers (Assembler, Record Parser, Split Producer and Block Reader). To understand what each layer does it's useful to start from the bottom. The file is just an array of bytes. We extract splits from the byte array (e.g. lines in CSV). Then we extract individual records from that split (fields in that line). Finally we assemble a final object out of individual records (e.g. an R dataframe).
 
-![Loading stack](/blog/assets/hdfsconnector/loading_stack.png)
+![Loading stack](/assets/hdfsconnector/loading_stack.png)
 
 In the next paragraphs we give more details about how the different layers work:
 
@@ -40,7 +40,7 @@ Reads a stream of bytes from storage. We have 2 flavors (`LocalBlockReader` and 
 
 To get the best performance we have an I/O thread that pre-fetches blocks while another thread parses the previous block. The idea is to overlap I/O with compute for improved performance.
 
-![Pipeline](/blog/assets/hdfsconnector/pipeline.png)
+![Pipeline](/assets/hdfsconnector/pipeline.png)
 
 #### Split producer
 Assembles splits (lines in CSV), stripes in ORC, etc. For that it might need to read one or more blocks.
@@ -52,7 +52,7 @@ An additional complication for CSV files is that the offset from which we start 
 
 To understand this better let's use an example. Suppose executor 1 is assigned range [0, 6] and executor 2  range [6,12]. Lines correspond to ranges [0,4),[4,8) and [8,12). Executor 1 will process both lines 1 and 2. Even though the range finishes at offset 6 it will continue until the full 2nd line is consumed. Executor 2 in turn will discard the incomplete line and only process line 3.
 
-![CSV line splitting](/blog/assets/hdfsconnector/csv_lines.png)
+![CSV line splitting](/assets/hdfsconnector/csv_lines.png)
 
 #### Record parser
 Breaks a split into individual records.
@@ -81,7 +81,7 @@ Performance is highly dependent on the HW configurations (numbers or cores, perf
 
 In the graph we present the results of loading a 64MB CSV file with a single machine (4 cores). The time decreases linearly as we add cores.
 
-![Performance](/blog/assets/hdfsconnector/perf.png)
+![Performance](/assets/hdfsconnector/perf.png)
 
 ### Conclusion
 This new connector allows R users to read files from HDFS. It can parallelize file loads across cores and machines which results in great performance.

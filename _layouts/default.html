@@ -9,35 +9,75 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+          <link rel="stylesheet" type="text/css" href="/assets/css/sidebar.css" />
+
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
 
   <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+  <div id="wrapper">
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="/">
+                    Jorge Martinez
+                </a>
+            </li>
+            <li>
+                <a href="/biz">Business</a>
+            </li>
+            <li>
+                <a href="/tech">Technology</a>
+            </li>
+            <li>
+                <a href="/books">Books</a>
+            </li>
+            <li>
+                <a href="/essays">Essays</a>
+            </li>
+        </ul>
+    </div>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
+      <div class="wrapper-masthead">
+          <div class="container">
+            <header class="masthead clearfix">
+              <a href="/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+
+              <div class="site-info">
+                <h1 class="site-name"><a href="/">{{ site.name }}</a></h1>
+                <p class="site-description">{{ site.description }}</p>
+              </div>
+
+              <nav>
+                {% include svg-icons.html %}
+                <a href="/about">About</a>
+              </nav>
+            </header>
           </div>
+        </div>
 
-          <nav>
-            {% include svg-icons.html %}
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
-          </nav>
-        </header>
-      </div>
-    </div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
+
+        <div id="main" role="main" class="container">
+<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+        <span class="glyphicon glyphicon-search"></span>
+        </a>
+
+            {{ content }}
+        </div>
 
     <div class="wrapper-footer">
       <div class="container">
@@ -47,6 +87,9 @@
       </div>
     </div>
 
+  </div>
     {% include analytics.html %}
+      {% include sidebar.html %}
+
   </body>
 </html>

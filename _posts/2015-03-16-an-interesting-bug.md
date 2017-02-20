@@ -3,7 +3,7 @@ layout: post
 title: "An interesting bug"
 description: ""
 category:
-tags: []
+tags: [tech]
 ---
 
 The other day I hit an interesting bug and I thought it would be fun to share it.

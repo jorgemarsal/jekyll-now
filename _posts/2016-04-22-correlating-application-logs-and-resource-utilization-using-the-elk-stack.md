@@ -3,7 +3,7 @@ layout: post
 title: "Correlating application logs and resource utilization using the ELK stack"
 description: "Correlating applications logs and resource utilization using the ELK stack"
 category: 
-tags: [elk, elasticsearch, logging, monitoring, logstash, kibana]
+tags: [tech, elk, elasticsearch, logging, monitoring, logstash, kibana]
 ---
 
 
@@ -83,11 +83,11 @@ When invoked, the function produces the following log entry and burns CPU for th
 ## Correlating application logs with resource utilization
 We can plot the resource utilization information we’re gathering using Kibana. During normal operation the CPU is idle between 90 and 100% of the time. However as we can see in the picture below, there’s a period of approximately 10 seconds (starting around 11:53:32) in which the CPU load increases a lot.
 
-![CPU load](/blog/assets/elk/cpuload.png)
+![CPU load](/assets/elk/cpuload.png)
 
 One way to start investigating the root cause of this behavior is to search the time frame prior to the load spike. We can easily do that in Kibana and after a little bit of log searching we find the culprit. As we can see in the picture below there was a request to the Go application that resulted in the load spike:
 
-![Log entry](/blog/assets/elk/log2.png)
+![Log entry](/assets/elk/log2.png)
 
 ## Conclusion
 Having a good monitoring infrastructure is crucial to understand how your application behaves in production. In this post we’ve explored how to create it by leveraging the ELK stack. Although this post uses a toy example, we can use the same setup to gather relevant information for real applications.
